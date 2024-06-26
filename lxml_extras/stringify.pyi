@@ -1,0 +1,6 @@
+from lxml.etree import _Element, _ElementTree
+from lxml_extras.utils.enums import OnError as OnError
+from lxml_extras.utils.exceptions import StringifyError as StringifyError
+
+def to_string(node: _Element | _ElementTree, *, exclude_own_tag: bool = True, default: str | None = None, errors: OnError = ...) -> str | None: ...
+def remove_blank_node_text(node: _Element | _ElementTree) -> _Element | _ElementTree: ...
