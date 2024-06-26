@@ -147,7 +147,7 @@ zip-safe = true                  # This just means it's safe to zip up the bdist
 # Non-code data that should be included in the package source code
 # https://setuptools.pypa.io/en/latest/userguide/datafiles.html
 [tool.setuptools.package-data]
-# lxml-extras = ["*.xml"]
+"lxml_extras" = ["py.typed"]
 
 # Python modules and packages that are included in the
 # distribution package (and therefore become importable)
