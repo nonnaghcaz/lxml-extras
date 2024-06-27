@@ -134,6 +134,7 @@ docs = [
     # Documentation generator
     "setuptools",
     "sphinx",
+    "furo",
     "sphinx-rtd-theme",
 ]
 
@@ -244,5 +245,3 @@ filterwarnings = ["ignore::DeprecationWarning"]
 [tool.coverage.run]
 # files or directories to exclude from coverage calculations
 omit = ['script.py', 'setup.py']
-
-
