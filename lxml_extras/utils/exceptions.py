@@ -56,3 +56,14 @@ class StringifyError(ValueError):
     ) -> None:
         """Initialize the exception."""
         super().__init__(message)
+
+
+class InvalidOnErrorValueError(ValueError):
+    """Raised when an invalid value is passed to OnError.from_str."""
+
+    def __init__(
+        self: InvalidOnErrorValueError,
+        message: str = "Invalid value for OnError",
+    ) -> None:
+        """Initialize the exception."""
+        super().__init__(message)
