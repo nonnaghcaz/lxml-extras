@@ -1,8 +1,8 @@
 """Extractors for lxml.etree._Element and lxml.etree._ElementTree objects."""
 
-from typing import Optional, Union
+from __future__ import annotations
 
-from lxml.etree import _Element, _ElementTree
+from typing import TYPE_CHECKING, Optional, Union
 
 from lxml_extras.utils.enums import OnError
 from lxml_extras.utils.exceptions import (
@@ -12,6 +12,9 @@ from lxml_extras.utils.exceptions import (
     XpathTooShortError,
 )
 from lxml_extras.utils.misc import is_numeric
+
+if TYPE_CHECKING:
+    from lxml.etree import _Element, _ElementTree
 
 
 def extract_attributes(
