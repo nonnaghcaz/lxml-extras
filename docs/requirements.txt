@@ -1,2 +1,2 @@
-lxml
-requests
+sphinx
+furo

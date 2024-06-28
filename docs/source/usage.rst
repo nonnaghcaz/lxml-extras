@@ -10,4 +10,4 @@ To use lxml-extras, first install it using pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install lxml_extras
+   (.venv) $ pip install lxml-extras

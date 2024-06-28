@@ -10,14 +10,17 @@ Welcome to lxml-extras's documentation!
     :target: https://lxml-extras.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
+The lxml-extras package provides additional functionality for the lxml library.
+
+Contents
+========
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   usage
-   lxml_extras
-   lxml_extras.utils
-   modules
+   source/usage
+   source/lxml_extras
+   .. source/modules
 
 
 Indices and tables
