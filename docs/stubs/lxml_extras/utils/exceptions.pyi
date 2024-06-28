@@ -12,3 +12,6 @@ class InvalidXpathError(ValueError):
 
 class StringifyError(ValueError):
     def __init__(self, message: str = 'Cannot stringify object') -> None: ...
+
+class InvalidOnErrorValueError(ValueError):
+    def __init__(self, message: str = 'Invalid value for OnError') -> None: ...
