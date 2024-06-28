@@ -6,7 +6,7 @@ Usage
 Installation
 ------------
 
-To use lxml_extras, first install it using pip:
+To use lxml-extras, first install it using pip:
 
 .. code-block:: console
 
