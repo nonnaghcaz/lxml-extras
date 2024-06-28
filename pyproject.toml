@@ -36,12 +36,9 @@ dependencies = [
 # lxml-extras = "lxml-extras.__main__:main"
 
 [project.urls]
-# "Homepage" = "<url>"
-# "Documentation" = "<url>"
-# "Changelog" = "<url>"
-# "Issue Tracker" = "<url>"
-# "Source" = "<url>"
-# "Discord server" = "<url>"
+homepage = "https://lxml-extras.readthedocs.io"
+documentation = "https://lxml-extras.readthedocs.io"
+repository = "https://github.com/nonnaghcaz/lxml-extras"
 
 
 # Development dependencies
