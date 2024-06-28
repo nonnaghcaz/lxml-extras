@@ -202,7 +202,7 @@ target-version = "py39"
 
 [tool.ruff.lint]
 select = ["ALL"]
-# ignore = ["D211", "D213"]
+ignore = ["ANN101", "ANN102", "E999"]
 
 
 # Linting error codes to ignore on a per-file basis
