@@ -19,9 +19,10 @@ def to_string(
     *,
     exclude_own_tag: bool = True,
     default: Optional[str] = None,
-    errors: OnError = OnError.RAISE,
+    errors: OnError = "raise",
 ) -> Optional[str]:
     """Convert an lxml node or tree to a string."""
+    errors = OnError.from_any(errors)
     if node is None or (len(node) == 0 and not getattr(node, "text", None)):
         if errors == OnError.RAISE:
             raise StringifyError
