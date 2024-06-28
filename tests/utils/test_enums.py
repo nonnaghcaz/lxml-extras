@@ -1,3 +1,5 @@
+"""Tests for the lxml_extras.utils.enums module."""
+
 import pytest
 
 from lxml_extras.utils.enums import OnError
