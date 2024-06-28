@@ -146,9 +146,6 @@ def test_extract_first_image() -> None:
         """,
     )
     assert extract_first_image(tree, errors=OnError.IGNORE) is None
-    assert (
-        extract_first_image(tree, errors=OnError.IGNORE, default="default") == "default"
-    )
 
 
 def test_extract_attributes() -> None:
@@ -231,34 +228,20 @@ def test_extract_attributes() -> None:
         extract_attributes(tree, "//a/@href", errors=OnError.RAISE)
 
     assert extract_attributes(tree, "//a/@href", errors=OnError.IGNORE) is None
-    assert (
-        extract_attributes(tree, "//a/@href", errors=OnError.IGNORE, default="default")
-        == "default"
-    )
 
     with pytest.raises(XpathTooShortError):
         extract_attributes(tree, "", errors=OnError.RAISE)
 
+    assert extract_attributes(tree, "", errors=OnError.IGNORE) is None
+
     assert extract_attributes(tree, "a", errors=OnError.IGNORE) is None
-    assert (
-        extract_attributes(tree, None, errors=OnError.IGNORE, default="default")
-        == "default"
-    )
 
     with pytest.raises(InvalidXpathAttributeError):
-        extract_attributes(tree, "//a", errors=OnError.RAISE)
+        extract_attributes(tree, "//a", errors="raise")
 
-    assert extract_attributes(tree, "//img", errors=OnError.IGNORE) is None
-    assert (
-        extract_attributes(tree, "//src", errors=OnError.IGNORE, default="default")
-        == "default"
-    )
+    assert extract_attributes(tree, "//img", errors="ignore") is None
 
     with pytest.raises(InvalidXpathError):
         extract_attributes(tree, "//+q/@i", errors=OnError.RAISE)
 
     assert extract_attributes(tree, "//+q/@i", errors=OnError.IGNORE) is None
-    assert (
-        extract_attributes(tree, "//+q/@i", errors=OnError.IGNORE, default="default")
-        == "default"
-    )

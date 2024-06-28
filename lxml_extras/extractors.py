@@ -1,6 +1,6 @@
 """Extractors for lxml.etree._Element and lxml.etree._ElementTree objects."""
 
-from typing import Any, Optional, Union
+from typing import Optional, Union
 
 from lxml.etree import _Element, _ElementTree
 
@@ -18,11 +18,12 @@ def extract_attributes(
     tree: Union[_Element, _ElementTree],
     xpath: str,
     *,
-    default: Optional[Any] = None,  # noqa: ANN401
-    errors: Union[OnError, str] = OnError.RAISE,
+    errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
     """Extract attributes from an lxml element or tree using an xpath."""
+    errors = OnError.from_any(errors)
+
     if (
         not xpath
         or not (xpath_parts := xpath.strip().split("/"))
@@ -32,7 +33,7 @@ def extract_attributes(
     ):
         if errors == OnError.RAISE:
             raise XpathTooShortError
-        return default
+        return None
 
     xpath_base = "/".join(xpath_parts[:-1])
     xpath_attr = xpath_parts[-1]
@@ -44,16 +45,16 @@ def extract_attributes(
         except Exception as ex:
             if errors == OnError.RAISE:
                 raise InvalidXpathError from ex
-            return default
+            return None
     else:
         if errors == OnError.RAISE:
             raise InvalidXpathAttributeError
-        return default
+        return None
 
     if not attributes:
         if errors == OnError.RAISE:
             raise NoXpathAttributesfoundError
-        return default
+        return None
 
     limit = (
         len(attributes)
@@ -73,15 +74,13 @@ def extract_links(
     tree: Union[_Element, _ElementTree],
     xpath: str = "//a/@href",
     *,
-    default: Optional[str] = None,
-    errors: OnError = OnError.RAISE,
+    errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
     """Extract links from an lxml element or tree using an xpath."""
     return extract_attributes(
         tree,
         xpath=xpath,
-        default=default,
         errors=errors,
         limit=limit,
     )
@@ -91,15 +90,13 @@ def extract_images(
     tree: Union[_Element, _ElementTree],
     xpath: str = "//img/@src",
     *,
-    default: Optional[str] = None,
-    errors: OnError = OnError.RAISE,
+    errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
     """Extract images from an lxml element or tree using an xpath."""
     return extract_attributes(
         tree,
         xpath=xpath,
-        default=default,
         errors=errors,
         limit=limit,
     )
@@ -109,11 +106,10 @@ def extract_first_image(
     tree: Union[_Element, _ElementTree],
     xpath: str = "//img/@src",
     *,
-    default: Optional[str] = None,
-    errors: OnError = OnError.RAISE,
+    errors: Union[OnError, str] = "raise",
 ) -> Optional[str]:
     """Extract the first image from an lxml element or tree using an xpath."""
-    images = extract_images(tree, xpath, default=default, errors=errors, limit=1)
+    images = extract_images(tree, xpath, errors=errors, limit=1)
     if isinstance(images, list):
         return images[0]
     return images
