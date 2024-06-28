@@ -27,10 +27,19 @@ def extract_attributes(
     """Extract attributes from an lxml element or tree using an xpath.
 
     :param tree: The lxml element or tree to extract attributes from.
+    :type tree: Union[_Element, _ElementTree]
     :param xpath: The xpath expression to select the attributes.
+    :type xpath: str
     :param errors: The error handling behavior. Defaults to "raise".
+    :type errors: Union[OnError, str]
     :param limit: The maximum number of attributes to extract. Defaults to None.
+    :type limit: Optional[int]
     :return: The list of extracted attributes, or None if no attributes found.
+    :rtype: Optional[list[str]]
+    :raises XpathTooShortError: If the xpath is too short.
+    :raises InvalidXpathError: If the xpath is invalid.
+    :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
+    :raises NoXpathAttributesfoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
@@ -96,10 +105,19 @@ def extract_links(
     """Extract links from an lxml element or tree using an xpath.
 
     :param tree: The lxml element or tree to extract links from.
+    :type tree: Union[_Element, _ElementTree]
     :param xpath: The xpath expression to select the links. Defaults to "//a/@href".
+    :type xpath: str
     :param errors: The error handling behavior. Defaults to "raise".
+    :type errors: Union[OnError, str]
     :param limit: The maximum number of links to extract. Defaults to None.
+    :type limit: Optional[int]
     :return: The list of extracted links, or None if no links found.
+    :rtype: Optional[list[str]]
+    :raises XpathTooShortError: If the xpath is too short.
+    :raises InvalidXpathError: If the xpath is invalid.
+    :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
+    :raises NoXpathAttributesfoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
@@ -125,10 +143,19 @@ def extract_images(
     """Extract images from an lxml element or tree using an xpath.
 
     :param tree: The lxml element or tree to extract images from.
+    :type tree: Union[_Element, _ElementTree]
     :param xpath: The xpath expression to select the images. Defaults to "//img/@src".
+    :type xpath: str
     :param errors: The error handling behavior. Defaults to "raise".
+    :type errors: Union[OnError, str]
     :param limit: The maximum number of images to extract. Defaults to None.
+    :type limit: Optional[int]
     :return: The list of extracted images, or None if no images found.
+    :rtype: Optional[list[str]]
+    :raises XpathTooShortError: If the xpath is too short.
+    :raises InvalidXpathError: If the xpath is invalid.
+    :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
+    :raises NoXpathAttributesfoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
@@ -153,9 +180,17 @@ def extract_first_image(
     """Extract the first image from an lxml element or tree using an xpath.
 
     :param tree: The lxml element or tree to extract the first image from.
+    :type tree: Union[_Element, _ElementTree]
     :param xpath: The xpath expression to select the images. Defaults to "//img/@src".
+    :type xpath: str
     :param errors: The error handling behavior. Defaults to "raise".
+    :type errors: Union[OnError, str]
     :return: The first extracted image, or None if no image found.
+    :rtype: Optional[str]
+    :raises XpathTooShortError: If the xpath is too short.
+    :raises InvalidXpathError: If the xpath is invalid.
+    :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
+    :raises NoXpathAttributesfoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
