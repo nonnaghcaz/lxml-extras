@@ -3,6 +3,7 @@ lxml-extras
 
 [![Documentation Status](https://readthedocs.org/projects/lxml-extras/badge/?version=latest)](https://lxml-extras.readthedocs.io/en/latest/?badge=latest)
 
+[![Coverage Status](https://coveralls.io/repos/github/nonnaghcaz/lxml-extras/badge.svg?branch=master)](https://coveralls.io/github/nonnaghcaz/lxml-extras?branch=master)
 
 The lxml-extras package provides additional functionality and QoL features for the lxml library, such as:  
 
@@ -16,4 +17,6 @@ This project is in extremely early stages.
 Install
 -------
 
-    `pip install lxml-extras`
+```shell
+    pip install lxml-extras
+```
