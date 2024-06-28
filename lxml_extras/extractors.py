@@ -21,7 +21,20 @@ def extract_attributes(
     errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
-    """Extract attributes from an lxml element or tree using an xpath."""
+    """Extract attributes from an lxml element or tree using an xpath.
+
+    :param tree: The lxml element or tree to extract attributes from.
+    :param xpath: The xpath expression to select the attributes.
+    :param errors: The error handling behavior. Defaults to "raise".
+    :param limit: The maximum number of attributes to extract. Defaults to None.
+    :return: The list of extracted attributes, or None if no attributes found.
+
+    >>> from lxml import etree
+    >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
+    >>> tree = etree.ElementTree(etree.fromstring(html))
+    >>> extract_attributes(tree, "//a/@href")
+    ['link1', 'link2']
+    """
     errors = OnError.from_any(errors)
 
     if (
@@ -77,7 +90,20 @@ def extract_links(
     errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
-    """Extract links from an lxml element or tree using an xpath."""
+    """Extract links from an lxml element or tree using an xpath.
+
+    :param tree: The lxml element or tree to extract links from.
+    :param xpath: The xpath expression to select the links. Defaults to "//a/@href".
+    :param errors: The error handling behavior. Defaults to "raise".
+    :param limit: The maximum number of links to extract. Defaults to None.
+    :return: The list of extracted links, or None if no links found.
+
+    >>> from lxml import etree
+    >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
+    >>> tree = etree.ElementTree(etree.fromstring(html))
+    >>> extract_links(tree)
+    ['link1', 'link2']
+    """
     return extract_attributes(
         tree,
         xpath=xpath,
@@ -93,7 +119,20 @@ def extract_images(
     errors: Union[OnError, str] = "raise",
     limit: Optional[int] = None,
 ) -> Optional[list[str]]:
-    """Extract images from an lxml element or tree using an xpath."""
+    """Extract images from an lxml element or tree using an xpath.
+
+    :param tree: The lxml element or tree to extract images from.
+    :param xpath: The xpath expression to select the images. Defaults to "//img/@src".
+    :param errors: The error handling behavior. Defaults to "raise".
+    :param limit: The maximum number of images to extract. Defaults to None.
+    :return: The list of extracted images, or None if no images found.
+
+    >>> from lxml import etree
+    >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
+    >>> tree = etree.ElementTree(etree.fromstring())
+    >>> extract_images(tree)
+    ['image1.jpg', 'image2.jpg']
+    """
     return extract_attributes(
         tree,
         xpath=xpath,
@@ -108,7 +147,19 @@ def extract_first_image(
     *,
     errors: Union[OnError, str] = "raise",
 ) -> Optional[str]:
-    """Extract the first image from an lxml element or tree using an xpath."""
+    """Extract the first image from an lxml element or tree using an xpath.
+
+    :param tree: The lxml element or tree to extract the first image from.
+    :param xpath: The xpath expression to select the images. Defaults to "//img/@src".
+    :param errors: The error handling behavior. Defaults to "raise".
+    :return: The first extracted image, or None if no image found.
+
+    >>> from lxml import etree
+    >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
+    >>> tree = etree.ElementTree(etree.fromstring(html))
+    >>> extract_first_image(tree)
+    'image1.jpg'
+    """
     images = extract_images(tree, xpath, errors=errors, limit=1)
     if isinstance(images, list):
         return images[0]

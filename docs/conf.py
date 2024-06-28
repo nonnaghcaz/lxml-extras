@@ -53,6 +53,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.coverage",
     "sphinx.ext.autosummary",
+    "sphinx.ext.doctest",
 ]
 
 # AutosectionLabel settings.
@@ -209,3 +210,6 @@ html_additional_pages = {}
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 # html_file_suffix = None
+
+
+autodoc_mock_imports = ["lxml", "requests"]
