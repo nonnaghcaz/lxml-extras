@@ -36,3 +36,8 @@ templates_path = ["source/_templates"]
 
 html_theme = "furo"
 html_static_path = ["source/_static"]
+
+# -- ReadTheDocs configuration ------------------------------------------------
+# https://docs.readthedocs.io/en/stable/config-file/v2.html
+
+master_doc = "index"
