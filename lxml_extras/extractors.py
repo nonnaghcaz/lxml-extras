@@ -39,7 +39,7 @@ def extract_attributes(
     :raises XpathTooShortError: If the xpath is too short.
     :raises InvalidXpathError: If the xpath is invalid.
     :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
-    :raises NoXpathAttributesfoundError: If no attributes are found.
+    :raises NoXpathAttributesFoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
@@ -117,7 +117,7 @@ def extract_links(
     :raises XpathTooShortError: If the xpath is too short.
     :raises InvalidXpathError: If the xpath is invalid.
     :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
-    :raises NoXpathAttributesfoundError: If no attributes are found.
+    :raises NoXpathAttributesFoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><a href="link1">Link 1</a><a href="link2">Link 2</a></root>'
@@ -155,7 +155,7 @@ def extract_images(
     :raises XpathTooShortError: If the xpath is too short.
     :raises InvalidXpathError: If the xpath is invalid.
     :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
-    :raises NoXpathAttributesfoundError: If no attributes are found.
+    :raises NoXpathAttributesFoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
@@ -190,7 +190,7 @@ def extract_first_image(
     :raises XpathTooShortError: If the xpath is too short.
     :raises InvalidXpathError: If the xpath is invalid.
     :raises InvalidXpathAttributeError: If the xpath attribute is invalid.
-    :raises NoXpathAttributesfoundError: If no attributes are found.
+    :raises NoXpathAttributesFoundError: If no attributes are found.
 
     >>> from lxml import etree
     >>> html = '<root><img src="image1.jpg"/><img src="image2.jpg"/></root>'
