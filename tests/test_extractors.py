@@ -92,7 +92,7 @@ def test_extract_first_image() -> None:
         </html>
         """,
     )
-    with pytest.raises(NoXpathAttributesfoundError):
+    with pytest.raises(NoXpathAttributesFoundError):
         extract_first_image(tree)
 
     tree = html.fromstring(
@@ -224,7 +224,7 @@ def test_extract_attributes() -> None:
         "https://example.org/image2.jpg",
     ]
 
-    with pytest.raises(NoXpathAttributesfoundError):
+    with pytest.raises(NoXpathAttributesFoundError):
         extract_attributes(tree, "//a/@href", errors=OnError.RAISE)
 
     assert extract_attributes(tree, "//a/@href", errors=OnError.IGNORE) is None
