@@ -6,6 +6,9 @@
 Welcome to lxml-extras's documentation!
 =======================================
 
+.. image:: https://github.com/nonnaghcaz/lxml-extras/actions/workflows/python-package-tox.yml/badge.svg
+     :target: https://github.com/nonnaghcaz/lxml-extras/actions/workflows/python-package-tox.yml
+     :alt: Test Status
 .. image:: https://readthedocs.org/projects/lxml-extras/badge/?version=latest
     :target: https://lxml-extras.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
