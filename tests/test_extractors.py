@@ -13,7 +13,7 @@ from lxml_extras.utils.enums import OnError
 from lxml_extras.utils.exceptions import (
     InvalidXpathAttributeError,
     InvalidXpathError,
-    NoXpathAttributesfoundError,
+    NoXpathAttributesFoundError,
     XpathTooShortError,
 )
 
