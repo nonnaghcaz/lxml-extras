@@ -8,7 +8,7 @@ from lxml_extras.utils.enums import OnError
 from lxml_extras.utils.exceptions import (
     InvalidXpathAttributeError,
     InvalidXpathError,
-    NoXpathAttributesfoundError,
+    NoXpathAttributesFoundError,
     XpathTooShortError,
 )
 from lxml_extras.utils.misc import is_numeric
@@ -78,7 +78,7 @@ def extract_attributes(
 
     if not attributes:
         if errors == OnError.RAISE:
-            raise NoXpathAttributesfoundError
+            raise NoXpathAttributesFoundError
         return None
 
     limit = (

@@ -25,11 +25,11 @@ class InvalidXpathAttributeError(ValueError):
         super().__init__(message)
 
 
-class NoXpathAttributesfoundError(ValueError):
+class NoXpathAttributesFoundError(ValueError):
     """Raised when no attributes are found."""
 
     def __init__(
-        self: NoXpathAttributesfoundError,
+        self: NoXpathAttributesFoundError,
         message: str = "No attributes found",
     ) -> None:
         """Initialize the exception."""
