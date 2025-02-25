@@ -13,8 +13,8 @@ Welcome to lxml-extras's documentation!
     :target: https://lxml-extras.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://coveralls.io/repos/github/nonnaghcaz/lxml-extras/badge.svg?branch=master
-   :target: https://coveralls.io/github/nonnaghcaz/lxml-extras?branch=master
+.. image:: https://codecov.io/gh/nonnaghcaz/lxml-extras/graph/badge.svg?token=99MpxxRca5 
+   :target: https://codecov.io/gh/nonnaghcaz/lxml-extras
    :alt: Coverage Status
 
 The lxml-extras package provides additional functionality for the lxml library.

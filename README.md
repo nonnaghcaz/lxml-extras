@@ -3,7 +3,7 @@ lxml-extras
 
 [![Python package](https://github.com/nonnaghcaz/lxml-extras/actions/workflows/python-package-tox.yml/badge.svg)](https://github.com/nonnaghcaz/lxml-extras/actions/workflows/python-package-tox.yml)
 [![Documentation Status](https://readthedocs.org/projects/lxml-extras/badge/?version=latest)](https://lxml-extras.readthedocs.io/en/latest/?badge=latest)
-[![Coverage Status](https://coveralls.io/repos/github/nonnaghcaz/lxml-extras/badge.svg?branch=master)](https://coveralls.io/github/nonnaghcaz/lxml-extras?branch=master)
+[![codecov](https://codecov.io/gh/nonnaghcaz/lxml-extras/graph/badge.svg?token=99MpxxRca5)](https://codecov.io/gh/nonnaghcaz/lxml-extras)
 
 The lxml-extras package provides additional functionality and QoL features for the lxml library, such as:  
 
