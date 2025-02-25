@@ -1,0 +1,244 @@
+[build-system]
+requires = ['setuptools>=64.0', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "lxml-extras"
+version = "0.0.1"
+description = "A collection of lxml utilities and extensions"
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+license = { file = "LICENSE" }
+authors = [
+    { "name" = "Zach Gannon", "email" = "7028393+nonnaghcaz@users.noreply.github.com" },
+]
+keywords = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "lxml",
+    "requests",
+]
+[project.scripts]
+# Command line interface entrypoint scripts
+# lxml-extras = "lxml-extras.__main__:main"
+
+[project.urls]
+homepage = "https://lxml-extras.readthedocs.io"
+documentation = "https://lxml-extras.readthedocs.io"
+repository = "https://github.com/nonnaghcaz/lxml-extras"
+
+
+# Development dependencies
+# pip install -e .[lint,test,exe]
+# pip install -e .[dev]
+[project.optional-dependencies]
+lint = [
+    # checks for spelling mistakes
+    "codespell>=2.2.4",
+
+    # ruff linter checks for issues and potential bugs
+    "ruff",
+
+    # required for codespell to parse pyproject.toml
+    "tomli",
+
+    # validation of pyproject.toml
+    "validate-pyproject[all]",
+
+    # static type checker
+    "mypy",
+]
+
+test = [
+    # Handles most of the testing work, including execution
+    # Docs: https://docs.pytest.org/en/stable/contents.html
+    "pytest",
+
+    # "Coverage" is how much of the code is actually run (it's "coverage")
+    # Generates coverage reports from test suite runs
+    "pytest-cov",
+    "tomli",
+
+    # pytest wrapper around the "mock" library
+    "pytest-mock",
+
+    # Randomizes the order of test execution
+    "pytest-randomly",
+
+    # Required for comparing device data exports and a few other complex structures
+    # Docs: https://zepworks.com/deepdiff/current/
+    "deepdiff",
+
+    # Test parallelization, as well as remote execution (which we may do someday)
+    "pytest-xdist[psutil]",
+
+    # HTML reports for pytest
+    "pytest-html",
+
+    # Detailed pytest results saved to a JSON file
+    "pytest-json-report",
+
+    # Better parsing of doctests
+    "xdoctest",
+
+    # Mocking of HTTP responses for the "requests" module
+    "requests-mock",
+
+    # Colors for doctest output
+    "Pygments",
+]
+
+
+exe = [
+    "setuptools",
+    "wheel",
+    "build",
+    "tomli",
+    "pyinstaller",
+    "staticx;platform_system=='Linux'",
+]
+
+dev = [
+    # https://hynek.me/articles/python-recursive-optional-dependencies/
+    "lxml-extras[lint,test,exe,docs]",
+
+    # Code quality tools
+    "mypy",
+
+    # Improved exception traceback output
+    # https://github.com/qix-/better-exceptions
+    "better_exceptions",
+
+    # Additional types
+    "types-requests",
+    "types-python-dateutil",
+]
+
+docs = [
+    # Documentation generator
+    "setuptools",
+    "sphinx",
+    "furo",
+    "sphinx-rtd-theme",
+    "napoleon",
+]
+
+
+[tool.setuptools]
+# https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+platforms = ["Linux", "Windows"]
+include-package-data = true
+zip-safe = true                  # This just means it's safe to zip up the bdist
+
+# Non-code data that should be included in the package source code
+# https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+[tool.setuptools.package-data]
+"lxml_extras" = ["py.typed"]
+
+# Python modules and packages that are included in the
+# distribution package (and therefore become importable)
+[tool.setuptools.packages.find]
+exclude = ["tests", "tests.*", "examples"]
+
+
+[tool.codespell]
+# codespell supports pyproject.toml since version 2.2.2
+# NOTE: the "tomli" package must be installed for this to work
+# https://github.com/codespell-project/codespell#using-a-config-file
+# NOTE: ignore words for codespell must be lowercase
+check-filenames = ""
+# ignore-words-list = "word,another,something"
+skip = "htmlcov,.doctrees,*.pyc,*.class,*.ico,*.out,*.PNG,*.inv,*.png,*.jpg,*.dot"
+
+
+[tool.black]
+line-length = 88
+# If you need to exclude directories from being reformatted by black
+force-exclude = '''
+(
+    .vscode
+    | __pycache__
+    | .env
+    | venv
+    | env
+    | build
+    | dist
+    | docs
+    | htmlcov
+    | .tox
+    | .nox
+    | .eggs
+)
+'''
+
+
+[tool.isort]
+profile = "black"
+known_first_party = ["lxml-extras"]
+# If you need to exclude files from having their imports sorted
+extend_skip_glob = ["*.pyc", "__pycache__", ".env", "venv", "env", "build", "dist", "docs", "htmlcov", ".tox", ".nox", ".eggs"]
+
+
+# https://beta.ruff.rs/docs
+[tool.ruff]
+line-length = 88
+output-format = "full"
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["ANN101", "ANN102", "E999"]
+
+
+# Linting error codes to ignore on a per-file basis
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "E501"]
+"setup.py" = ["D100"]
+"tests/**/*.py" = [
+    # at least this three should be fine in tests:
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+]
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+# Configuration for mypy
+# https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
+[tool.mypy]
+python_version = "3.11"
+follow_imports = "skip"
+ignore_missing_imports = true
+files = "lxml-extras"                # directory mypy should analyze
+# Directories to exclude from mypy's analysis
+# exclude = ["lxml-extras/somedir", "lxml-extras/somefile\\.py", "dirname"]
+
+
+# Configuration for pytest
+# https://docs.pytest.org/en/latest/reference/customize.html#pyproject-toml
+[tool.pytest.ini_options]
+testpaths = "tests"                        # directory containing your tests
+norecursedirs = [".vscode", "__pycache__", ".env", "venv", "env", "build", "dist", "docs", "htmlcov", ".tox", ".nox", ".eggs", "examples", "somedir", "somedir2"]
+# Warnings that should be ignored
+filterwarnings = ["ignore::DeprecationWarning"]
+# custom markers that can be used using pytest.mark
+# markers = ["slow: lower-importance tests that take an excessive amount of time"]
+
+
+# Configuration for coverage.py
+[tool.coverage.run]
+# files or directories to exclude from coverage calculations
+omit = ['script.py', 'setup.py']
