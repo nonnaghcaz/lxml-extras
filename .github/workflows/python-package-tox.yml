@@ -12,8 +12,8 @@ jobs:
         python-version: [3.11, 3.12, 3.13]
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@main
         with:
           python-version: ${{ matrix.python }}
       - name: Install tox
@@ -21,10 +21,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install tox tox-gh-actions
       - name: Run tox
-        run: python -m tox        
+        run: python -m tox
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          directory: ./docs/reports/
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2.3.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: docs/reports/lcov.info
+        
 
